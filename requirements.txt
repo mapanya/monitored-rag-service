@@ -1,0 +1,43 @@
+# Python packages for the Monitored RAG Service.
+# Tested together on Python  3.12. Install with:
+#     pip install -r requirements.txt
+#
+# The versions are pinned on purpose so the install works the same way
+# every time. In particular, torch 2.2.2 is the last release that
+# supports Mac computers with Intel processors, and the three
+# constraints at the bottom keep every other package compatible with
+# it on that platform.
+
+# Local embeddings (turn text into number lists on the local machine)
+torch==2.2.2
+sentence-transformers==3.4.1
+transformers==4.57.6
+huggingface_hub==0.36.2
+
+# Vector database client (hybrid search lives in Weaviate)
+weaviate-client==4.23.1
+
+# Monitoring dashboard and tracing
+arize-phoenix==20.19.0
+arize-phoenix-otel==0.17.2
+openinference-semantic-conventions==0.1.41
+
+# Answer generation (Google Gemini)
+google-genai==2.28.0
+
+# The web service
+fastapi==0.142.2
+uvicorn==0.54.0
+
+# Utilities: reading .env, reading PDFs, tables, tests
+python-dotenv==1.2.4
+pypdf==6.19.0
+pandas==2.3.3
+pytest==9.1.1
+
+# Compatibility guards for Intel Mac (do not raise these):
+# torch 2.2.2 was built against numpy 1.x
+numpy<2
+# newer releases of these two stopped shipping Intel Mac builds
+pandas<3
+cryptography<=48.0.1
